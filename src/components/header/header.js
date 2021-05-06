@@ -13,7 +13,7 @@ const useStyles = makeStyles({
   }
 });
 
-export const Header = () => {
+export const Header = ({ seekText, searchRepos, clearResult }) => {
   const classes = useStyles();
 
   return (
@@ -24,9 +24,22 @@ export const Header = () => {
             label="Search"
             variant="outlined"
             type="text"
+            value={seekText}
+            onChange={searchRepos}
             size="small"
+            inputProps={{ "data-testid": "search-input" }}
           />
         </Box>
+        {
+          seekText &&
+            <Button
+              size="small"
+              variant="contained"
+              onClick={clearResult}
+            >
+              Clear Text
+            </Button>
+        }
       </Box>
     </header>
   );
